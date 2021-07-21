@@ -1,24 +1,24 @@
 package LoginSystem;
 
+import Core.MyDiary;
 import UI.Designer;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 
 public class LoginSystem {
 
     private Login login;
     private Register register;
-    private Scene scene;
+    private MyDiary myDiary;
 
-    public LoginSystem() {
+    public LoginSystem(MyDiary myDiary) {
         this.init();
+        this.myDiary = myDiary;
     }
 
     private void init() {
         this.login = new Login(this);
         this.register = new Register(this);
-        this.scene = new Scene(this.login);
-        Designer.changeScene(this.scene);
+        Designer.setSceneRoot(this.login);
     }
 
     public Register getRegister() {
@@ -26,6 +26,10 @@ public class LoginSystem {
     }
 
     public void changeContent(Parent parent) {
-        this.scene.setRoot(parent);
+        Designer.setSceneRoot(parent);
+    }
+
+    public MyDiary getMyDiary() {
+        return this.myDiary;
     }
 }

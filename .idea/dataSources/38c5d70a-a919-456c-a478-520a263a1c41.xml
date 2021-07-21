@@ -807,7 +807,8 @@ false Zulu
 13158||-9223372036854775808|U|G
 13158||10|U|G</Grants>
       <Owner>postgres</Owner>
-      <IntrospectionStateNumber>533</IntrospectionStateNumber>
+      <IntrospectionStateNumber>546</IntrospectionStateNumber>
+      <Current>1</Current>
     </database>
     <role id="3" parent="1" name="pg_execute_server_program">
       <ObjectId>4571</ObjectId>
@@ -2401,7 +2402,7 @@ false Zulu
       <Comment>standard public schema</Comment>
       <StateNumber>287</StateNumber>
       <Owner>postgres</Owner>
-      <IntrospectionStateNumber>534</IntrospectionStateNumber>
+      <IntrospectionStateNumber>547</IntrospectionStateNumber>
       <Current>1</Current>
     </schema>
     <extension id="17" parent="2" name="plpgsql">
