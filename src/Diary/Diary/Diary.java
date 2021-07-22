@@ -28,4 +28,8 @@ public class Diary extends DiaryDesigner {
     public List<Note> getNotes() {
         return this.notes;
     }
+
+    public void changeNode(Note oldNote, Note newNote) {
+        oldNote.setTitle(newNote.getTitle());
+    }
 }

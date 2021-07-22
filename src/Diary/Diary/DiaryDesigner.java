@@ -13,7 +13,7 @@ public class DiaryDesigner extends ScrollPane {
     }
 
     private void initStyle() {
-        this.notesContainer = new VBox();
+        this.notesContainer = new VBox(3);
         this.notesContainer.setMaxWidth(900);
         super.setContent(this.notesContainer);
         super.setHbarPolicy(ScrollBarPolicy.NEVER);

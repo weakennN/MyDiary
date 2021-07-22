@@ -15,11 +15,15 @@ public class Designer {
 
     public static void changeScene(Scene scene) {
         stage.setScene(scene);
+        stage.sizeToScene();
         stage.show();
     }
 
     public static void setSceneRoot(Parent parent) {
-        scene = new Scene(parent);
+        if (scene == null) {
+            scene = new Scene(parent);
+        }
+        scene.setRoot(parent);
         changeScene(scene);
     }
 }

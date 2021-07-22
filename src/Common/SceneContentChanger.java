@@ -14,7 +14,7 @@ public class SceneContentChanger {
         roots.put(key, region);
     }
 
-    public Region getContent(String key) {
+    public static Region getContent(String key) {
         return roots.get(key);
     }
 

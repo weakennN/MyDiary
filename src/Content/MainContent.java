@@ -1,11 +1,16 @@
 package Content;
 
+import Common.SceneContentChanger;
 import Diary.Diary.Diary;
+import UI.CustomControls.NoteMenuControls.NoteMenuButton;
 import javafx.scene.layout.Region;
 
 public class MainContent extends Region {
 
     private Diary diary;
+    private NoteMenuButton modifyNote;
+
+    // TODO: make super class for all content containers
 
     public MainContent(Diary diary) {
         this.diary = diary;
@@ -13,6 +18,14 @@ public class MainContent extends Region {
     }
 
     private void init() {
-        super.getChildren().add(this.diary);
+        this.modifyNote = new NoteMenuButton();
+        SceneContentChanger.addContent("noteMenu", new NoteMenu(this.diary));
+        this.modifyNote.setLayoutX(800);
+        this.modifyNote.setLayoutY(550);
+        this.modifyNote.setOnAction(e -> {
+            ((NoteMenu) SceneContentChanger.getContent("noteMenu")).getNoteCreator().getAction("save").initAction();
+            SceneContentChanger.changeContent("noteMenu");
+        });
+        super.getChildren().addAll(this.diary, this.modifyNote);
     }
 }

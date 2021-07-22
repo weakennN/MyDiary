@@ -4,7 +4,18 @@ import java.util.Locale;
 
 public enum Month {
 
-    JULY("JUL", "0356fc");
+    JANUARY("JAN", "5698f5"),
+    FEBRUARY("FEB", "4307f7"),
+    MARCH("MAR", "ff03cd"),
+    APRIL("APR", "ff0370"),
+    MAY("MAY", "0ff290"),
+    JULY("JUL", "0356fc"),
+    JUNE("JUN", "eb1313"),
+    AUGUST("AUG", "d1fa07"),
+    SEPTEMBER("SEP", "fc4103"),
+    OCTOBER("OCT", "f55ff0"),
+    NOVEMBER("NOV", "5de892"),
+    DECEMBER("DEC", "c5e058");
 
     private String month;
     private String color;

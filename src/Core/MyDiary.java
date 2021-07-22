@@ -19,8 +19,7 @@ public class MyDiary {
     public void start() {
         Database.makeConnection();
         this.setDiary(new Diary(1));
-        diary.addNote(new Note(1, 2021, Month.JULY, "title", "text"));
-       // diary.addNote(new Note(1, 2021, "MON", "titleeee", "text"));
+        diary.addNote(new Note(1,"Friday", 2021, Month.JULY, "title", "text"));
         // this.loginSystem = new LoginSystem(this);
     }
 
