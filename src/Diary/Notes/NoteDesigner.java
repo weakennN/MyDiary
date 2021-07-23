@@ -3,6 +3,7 @@ package Diary.Notes;
 import UI.CustomControls.NoteControl.Month;
 import UI.CustomControls.NoteControl.NoteControl;
 import javafx.scene.layout.Region;
+import javafx.scene.paint.Color;
 
 public abstract class NoteDesigner extends Region {
 
@@ -17,7 +18,25 @@ public abstract class NoteDesigner extends Region {
         return this.noteControl;
     }
 
-    public void setTitle(String text){
-        this.noteControl.getTitle().setText(text);
+    public void setTitle(String title) {
+        this.noteControl.getTitleLabel().setText(title);
+    }
+
+    public void setText(String text) {
+        this.noteControl.getTextLabel().setText(text);
+    }
+
+    public void setWeekDay(String weekDay) {
+        this.noteControl.getWeekDayLabel().setText(weekDay);
+    }
+
+    public void setMonthDay(int monthDay) {
+        this.noteControl.getMonthDayLabel().setText(monthDay + "");
+    }
+
+    public void setMonth(Month month, int year) {
+        this.noteControl.getRectangle().setFill(Color.valueOf(month.getColor()));
+        this.noteControl.getYearLabel().setText(month.getMonth() + "/" + year);
+        this.noteControl.setBackground(this.noteControl.getWeekDayLabel(), Color.valueOf(month.getColor()));
     }
 }

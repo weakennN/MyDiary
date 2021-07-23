@@ -3,7 +3,6 @@ package UI.CustomControls.NoteControl;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -81,8 +80,32 @@ public class NoteControl extends Region {
         super.getChildren().addAll(this.dateVbox, this.textVbox, this.rectangle);
     }
 
-    public Label getTitle(){
+    public Label getTitleLabel() {
         return this.titleLabel;
+    }
+
+    public Label getTextLabel() {
+        return this.textLabel;
+    }
+
+    public Label getWeekDayLabel() {
+        return this.weekDayLabel;
+    }
+
+    public Label getMonthDayLabel() {
+        return this.monthDayLabel;
+    }
+
+    public Rectangle getRectangle() {
+        return this.rectangle;
+    }
+
+    public Label getYearLabel() {
+        return this.yearLabel;
+    }
+
+    public void setBackground(Label label, Color color) {
+        label.setBackground(new Background(new BackgroundFill(color, null, null)));
     }
 
     @Override

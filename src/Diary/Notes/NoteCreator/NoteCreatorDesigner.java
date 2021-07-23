@@ -10,6 +10,7 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 
 import java.util.List;
+import java.util.Locale;
 
 public abstract class NoteCreatorDesigner extends Region {
 
@@ -82,7 +83,8 @@ public abstract class NoteCreatorDesigner extends Region {
     }
 
     public void setFields(Note note) {
-        this.cTextField.getDatePicker().getEditor().setText(note.getMonth().toString());
+        this.cTextField.getDatePicker().getEditor().setText(note.getWeekDay() + ", " + note.getMonthDay() + " "
+                + note.getMonth().toString().charAt(0) + note.getMonth().toString().substring(1).toLowerCase(Locale.ROOT) + " " + note.getYear());
         this.tTextField.getTextField().setText(note.getTitle());
         this.nTextArea.getTextArea().setText(note.getText());
     }

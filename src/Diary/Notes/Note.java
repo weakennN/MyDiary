@@ -40,4 +40,34 @@ public class Note extends NoteDesigner {
     public Month getMonth() {
         return this.month;
     }
+
+    public void setTitle(String title) {
+        this.title = title;
+        super.setTitle(title);
+    }
+
+    public void setText(String text) {
+        this.text = text;
+        super.setText(text);
+    }
+
+    public void setWeekDay(String weekDay) {
+        this.weekDay = weekDay;
+        super.setWeekDay(weekDay);
+    }
+
+    public void setMonthDay(int monthDay) {
+        this.monthDay = monthDay;
+        super.setMonthDay(monthDay);
+    }
+
+    public String getWeekDay() {
+        return weekDay;
+    }
+
+    public void setMonth(Month month, int year) {
+        this.year = year;
+        this.month = month;
+        super.setMonth(month, year);
+    }
 }
