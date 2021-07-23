@@ -6,9 +6,10 @@ import Diary.Diary.Diary;
 import UI.CustomControls.DataField;
 import User.User;
 import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
-
-import java.util.List;
+import javafx.scene.layout.VBox;
 
 public class Register extends Pane {
 
@@ -23,12 +24,12 @@ public class Register extends Pane {
         this.loginSystem = loginSystem;
         this.initStyle();
     }
-
+    // TODO create register designer and login designer
     private void initStyle() {
-        this.usernameField = new DataField("test");
-        this.emailField = new DataField("123");
-        this.passwordField = new DataField("dsf");
-
+        this.usernameField = new DataField(new TextField(), "Username");
+        this.emailField = new DataField(new TextField(), "Email");
+        this.passwordField = new DataField(new PasswordField(), "Password");
+        this.passwordField.displayErrorMessage("Must be 6 or more in lenght");
         this.registerButton = new Button("Register");
 
         this.registerButton.setOnAction(e -> {
@@ -42,19 +43,10 @@ public class Register extends Pane {
             // TODO set current user to this user
         });
 
-        List<DataField> dataFields = List.of(this.usernameField, this.emailField, this.passwordField);
+        VBox vBox = new VBox(10);
+        vBox.getChildren().addAll(this.usernameField, this.emailField, this.passwordField, this.registerButton);
 
-        double y = 185;
-        for (DataField dataField : dataFields) {
-            dataField.setLayoutX(350 - (dataField.getTextField().getMinWidth() / 2));
-            dataField.setLayoutY(y);
-            y += dataField.getTextField().getMinHeight() + 10;
-            super.getChildren().add(dataField);
-        }
-
-        this.registerButton.setLayoutX(350);
-        this.registerButton.setLayoutY(y);
-        super.getChildren().add(this.registerButton);
+        super.getChildren().add(vBox);
 
         super.setMinSize(700, 550);
     }

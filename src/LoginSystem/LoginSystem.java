@@ -18,7 +18,7 @@ public class LoginSystem {
     private void init() {
         this.login = new Login(this);
         this.register = new Register(this);
-        Designer.setSceneRoot(this.login);
+        Designer.initScene(this.login);
     }
 
     public Register getRegister() {

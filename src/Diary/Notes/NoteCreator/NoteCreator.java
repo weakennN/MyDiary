@@ -2,9 +2,11 @@ package Diary.Notes.NoteCreator;
 
 import Common.NoteClicked;
 import Common.SceneContentChanger;
+import Database.Database;
 import Diary.Diary.Diary;
 import Diary.Notes.Note;
 import UI.CustomControls.NoteControl.Month;
+import UI.Designer;
 import javafx.scene.input.MouseButton;
 
 import java.util.Locale;
@@ -37,14 +39,8 @@ public class NoteCreator extends NoteCreatorDesigner {
         String title = super.getTTextField().getTextField().getText();
         String text = super.getNTextArea().getTextArea().getText();
         Note note = new Note(day, weekDay, year, month, title, text);
-        note.setOnMouseClicked(e -> {
-            if (e.getButton().equals(MouseButton.PRIMARY)) {
-                super.setFields(note);
-                SceneContentChanger.changeContent("noteMenu");
-                this.setEditAction();
-            }
-            NoteClicked.note = note;
-        });
+        Database.registerNote(note.getUniqueId(), this.diary.getUniqueId(), title, text, weekDay, day, month.toString(), year);
+        this.initNoteDefaultActions(note);
         this.diary.addNote(note);
     }
 
@@ -52,6 +48,7 @@ public class NoteCreator extends NoteCreatorDesigner {
         super.getSaveButton().setOnAction(e -> {
             this.saveNote();
             SceneContentChanger.changeContent("mainContent");
+            this.clearFields();
         });
     }
 
@@ -70,11 +67,25 @@ public class NoteCreator extends NoteCreatorDesigner {
             note.setMonth(month, year);
             note.setTitle(title);
             note.setText(text);
+            Database.editNote(note.getUniqueId(), title, text, weekDay, day, month.toString(), year);
             SceneContentChanger.changeContent("mainContent");
         });
     }
 
     public Diary getDiary() {
         return this.diary;
+    }
+
+    private void initNoteDefaultActions(Note note) {
+        note.setOnMouseClicked(e -> {
+            if (e.getButton().equals(MouseButton.PRIMARY)) {
+                super.setFields(note);
+                SceneContentChanger.changeContent("noteMenu");
+                this.setEditAction();
+            } else if (e.getButton().equals(MouseButton.SECONDARY)) {
+                this.diary.getMenu("NoteContextMenu").show(Designer.stage, e.getScreenX(), e.getScreenY());
+            }
+            NoteClicked.note = note;
+        });
     }
 }

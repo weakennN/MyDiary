@@ -1,9 +1,11 @@
 package Diary.Notes;
 
+import Common.IdGenerator;
 import UI.CustomControls.NoteControl.Month;
 
 public class Note extends NoteDesigner {
 
+    private int id;
     private int monthDay;
     private String weekDay;
     private int year;
@@ -13,6 +15,7 @@ public class Note extends NoteDesigner {
 
     public Note(int monthDay, String weekDay, int year, Month month, String title, String text) {
         super(monthDay, weekDay, year, month, title, text);
+        this.id = IdGenerator.generateId();
         this.monthDay = monthDay;
         this.year = year;
         this.month = month;
@@ -69,5 +72,9 @@ public class Note extends NoteDesigner {
         this.year = year;
         this.month = month;
         super.setMonth(month, year);
+    }
+
+    public int getUniqueId(){
+        return this.id;
     }
 }

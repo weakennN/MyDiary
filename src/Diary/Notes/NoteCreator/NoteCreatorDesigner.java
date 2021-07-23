@@ -88,4 +88,12 @@ public abstract class NoteCreatorDesigner extends Region {
         this.tTextField.getTextField().setText(note.getTitle());
         this.nTextArea.getTextArea().setText(note.getText());
     }
+
+    public String getTitle() {
+        return this.tTextField.getTextField().getText();
+    }
+
+    public String getText() {
+        return this.tTextField.getTextField().getText();
+    }
 }

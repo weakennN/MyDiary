@@ -807,7 +807,7 @@ false Zulu
 13158||-9223372036854775808|U|G
 13158||10|U|G</Grants>
       <Owner>postgres</Owner>
-      <IntrospectionStateNumber>546</IntrospectionStateNumber>
+      <IntrospectionStateNumber>561</IntrospectionStateNumber>
       <Current>1</Current>
     </database>
     <role id="3" parent="1" name="pg_execute_server_program">
@@ -2402,7 +2402,7 @@ false Zulu
       <Comment>standard public schema</Comment>
       <StateNumber>287</StateNumber>
       <Owner>postgres</Owner>
-      <IntrospectionStateNumber>547</IntrospectionStateNumber>
+      <IntrospectionStateNumber>562</IntrospectionStateNumber>
       <Current>1</Current>
     </schema>
     <extension id="17" parent="2" name="plpgsql">
@@ -2507,35 +2507,113 @@ false Zulu
       <Owner>postgres</Owner>
       <StateNumber>525</StateNumber>
     </table>
-    <column id="30" parent="29" name="id">
+    <table id="30" parent="16" name="notes">
+      <ObjectId>16439</ObjectId>
+      <Owner>postgres</Owner>
+      <StateNumber>560</StateNumber>
+    </table>
+    <column id="31" parent="29" name="id">
       <Position>1</Position>
       <DataType>integer|0s</DataType>
       <StateNumber>525</StateNumber>
       <TypeId>23</TypeId>
     </column>
-    <column id="31" parent="29" name="user_name">
+    <column id="32" parent="29" name="user_name">
       <Position>2</Position>
       <DataType>varchar|0s</DataType>
       <StateNumber>525</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="32" parent="29" name="email">
+    <column id="33" parent="29" name="email">
       <Position>3</Position>
       <DataType>varchar|0s</DataType>
       <StateNumber>525</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="33" parent="29" name="password">
+    <column id="34" parent="29" name="password">
       <Position>4</Position>
       <DataType>varchar|0s</DataType>
       <StateNumber>525</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="34" parent="29" name="diary_id">
+    <column id="35" parent="29" name="diary_id">
       <Position>5</Position>
       <DataType>integer|0s</DataType>
       <StateNumber>525</StateNumber>
       <TypeId>23</TypeId>
     </column>
+    <column id="36" parent="30" name="note_id">
+      <Position>1</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>560</StateNumber>
+      <TypeId>23</TypeId>
+    </column>
+    <column id="37" parent="30" name="diary_id">
+      <Position>2</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>560</StateNumber>
+      <TypeId>23</TypeId>
+    </column>
+    <column id="38" parent="30" name="title">
+      <Position>3</Position>
+      <DataType>varchar|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>560</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="39" parent="30" name="text">
+      <Position>4</Position>
+      <DataType>varchar|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>560</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="40" parent="30" name="week_day">
+      <Position>5</Position>
+      <DataType>varchar|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>560</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="41" parent="30" name="month_day">
+      <Position>6</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>560</StateNumber>
+      <TypeId>23</TypeId>
+    </column>
+    <column id="42" parent="30" name="month">
+      <Position>7</Position>
+      <DataType>varchar|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>560</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="43" parent="30" name="year">
+      <Position>8</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>560</StateNumber>
+      <TypeId>23</TypeId>
+    </column>
+    <index id="44" parent="30" name="notes_pkey">
+      <ObjectId>16445</ObjectId>
+      <StateNumber>560</StateNumber>
+      <ColNames>note_id</ColNames>
+      <Unique>1</Unique>
+      <Primary>1</Primary>
+      <AccessMethodId>403</AccessMethodId>
+      <CollationIds>0</CollationIds>
+      <ClassIds>1978</ClassIds>
+    </index>
+    <key id="45" parent="30" name="notes_pkey">
+      <ObjectId>16446</ObjectId>
+      <StateNumber>560</StateNumber>
+      <ColNames>note_id</ColNames>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>notes_pkey</UnderlyingIndexName>
+    </key>
   </database-model>
 </dataSource>

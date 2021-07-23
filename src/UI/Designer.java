@@ -2,6 +2,7 @@ package UI;
 
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 public class Designer {
@@ -13,17 +14,18 @@ public class Designer {
         stage = new Stage();
     }
 
-    public static void changeScene(Scene scene) {
-        stage.setScene(scene);
+    public static void changeScene() {
         stage.sizeToScene();
-        stage.show();
     }
 
     public static void setSceneRoot(Parent parent) {
-        if (scene == null) {
-            scene = new Scene(parent);
-        }
         scene.setRoot(parent);
-        changeScene(scene);
+        changeScene();
+    }
+
+    public static void initScene(Parent parent) {
+        scene = new Scene(parent);
+        stage.setScene(scene);
+        stage.show();
     }
 }
