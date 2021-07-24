@@ -1,6 +1,8 @@
 package LoginSystem;
 
 import Core.MyDiary;
+import LoginSystem.Login.Login;
+import LoginSystem.Register.Register;
 import UI.Designer;
 import javafx.scene.Parent;
 

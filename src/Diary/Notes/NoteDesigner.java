@@ -2,6 +2,8 @@ package Diary.Notes;
 
 import UI.CustomControls.NoteControl.Month;
 import UI.CustomControls.NoteControl.NoteControl;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
 
@@ -12,6 +14,12 @@ public abstract class NoteDesigner extends Region {
     public NoteDesigner(int day, String weekDay, int year, Month month, String title, String text) {
         this.noteControl = new NoteControl(day, weekDay, year, month, title, text);
         super.getChildren().add(this.noteControl);
+        super.setOnMouseEntered(e -> {
+            this.noteControl.setBackground(new Background(new BackgroundFill(Color.valueOf("dbdbd9"), null, null)));
+        });
+        super.setOnMouseExited(e -> {
+            this.noteControl.setBackground(new Background(new BackgroundFill(Color.WHITE, null, null)));
+        });
     }
 
     public NoteControl getNoteControl() {

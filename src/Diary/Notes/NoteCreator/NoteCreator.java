@@ -48,7 +48,7 @@ public class NoteCreator extends NoteCreatorDesigner {
         super.getSaveButton().setOnAction(e -> {
             this.saveNote();
             SceneContentChanger.changeContent("mainContent");
-            this.clearFields();
+            super.clearFields();
         });
     }
 

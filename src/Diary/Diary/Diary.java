@@ -10,11 +10,11 @@ import java.util.Map;
 
 public class Diary extends DiaryDesigner {
 
-    private int id;
+    private String id;
     private List<Note> notes;
     private Map<String, DiaryMenu> menus;
 
-    public Diary(int id) {
+    public Diary(String id) {
         this.id = id;
         this.notes = new ArrayList<>();
         this.menus = new HashMap<>();
@@ -39,7 +39,7 @@ public class Diary extends DiaryDesigner {
         return this.menus.get(key);
     }
 
-    public int getUniqueId() {
+    public String getUniqueId() {
         return this.id;
     }
 }

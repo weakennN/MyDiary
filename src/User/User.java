@@ -4,11 +4,11 @@ import Diary.Diary.Diary;
 
 public class User {
 
-    private int id;
+    private String id;
     private String username;
     private Diary diary;
 
-    public User(int id, String username, Diary diary) {
+    public User(String id, String username, Diary diary) {
         this.id = id;
         this.username = username;
         this.diary = diary;

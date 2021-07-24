@@ -1,6 +1,16 @@
 package LoginSystem.Verifier;
 
-public abstract class Verifier {
+public abstract class Verifier<T> {
 
-    public abstract <T> boolean verify(T item);
+    private T item;
+
+    public Verifier(T item) {
+        this.item = item;
+    }
+
+    public abstract boolean verify();
+
+    protected T getItem() {
+        return this.item;
+    }
 }

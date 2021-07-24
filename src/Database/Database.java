@@ -25,16 +25,16 @@ public class Database {
         }
     }
 
-    public static void createUser(int id, String username, String email, String password, int diaryId) {
+    public static void createUser(String id, String username, String email, String password, String diaryId) {
         PreparedStatement statement = null;
         try {
             String query = "INSERT INTO accounts VALUES (?, ?, ?, ?, ?)";
             statement = connection.prepareStatement(query);
-            statement.setInt(1, id);
+            statement.setString(1, id);
             statement.setString(2, username);
             statement.setString(3, email);
             statement.setString(4, password);
-            statement.setInt(5, diaryId);
+            statement.setString(5, diaryId);
             statement.execute();
         } catch (Exception e) {
             e.printStackTrace();
@@ -47,14 +47,13 @@ public class Database {
         }
     }
 
-    public static void registerNote(int noteId, int diaryId, String title, String text, String weekDay, int monthDay, String month, int year) {
+    public static void registerNote(String noteId, String diaryId, String title, String text, String weekDay, int monthDay, String month, int year) {
         PreparedStatement statement = null;
-
         try {
             String query = "INSERT INTO notes VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
             statement = connection.prepareStatement(query);
-            statement.setInt(1, noteId);
-            statement.setInt(2, diaryId);
+            statement.setString(1, noteId);
+            statement.setString(2, diaryId);
             statement.setString(3, title);
             statement.setString(4, text);
             statement.setString(5, weekDay);
@@ -67,9 +66,8 @@ public class Database {
         }
     }
 
-    public static void editNote(int noteId, String title, String text, String weekDay, int monthDay, String month, int year) {
+    public static void editNote(String noteId, String title, String text, String weekDay, int monthDay, String month, int year) {
         PreparedStatement statement = null;
-
         try {
             String query = "UPDATE notes SET title = ?, text = ?, week_day = ?, month_day = ? , month = ?, year = ? WHERE note_id = ?";
             statement = connection.prepareStatement(query);
@@ -79,7 +77,36 @@ public class Database {
             statement.setInt(4, monthDay);
             statement.setString(5, month);
             statement.setInt(6, year);
-            statement.setInt(7, noteId);
+            statement.setString(7, noteId);
+            statement.execute();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static boolean isUsernameAvailable(String username) {
+        PreparedStatement statement = null;
+        try {
+            String query = "SELECT user_name FROM accounts WHERE user_name = ?";
+            statement = connection.prepareStatement(query);
+            statement.setString(1, username);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                return false;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return true;
+    }
+
+    public static void removeNote(String noteId) {
+        PreparedStatement statement = null;
+        try {
+            String query = "DELETE FROM notes WHERE note_id = ?";
+            statement = connection.prepareStatement(query);
+            statement.setString(1, noteId);
             statement.execute();
         } catch (Exception e) {
             e.printStackTrace();

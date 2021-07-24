@@ -10,8 +10,6 @@ public class MainContent extends Region {
     private Diary diary;
     private NoteMenuButton modifyNote;
 
-    // TODO: make super class for all content containers
-
     public MainContent(Diary diary) {
         this.diary = diary;
         this.init();
@@ -24,6 +22,7 @@ public class MainContent extends Region {
         this.modifyNote.setLayoutY(550);
         this.modifyNote.setOnAction(e -> {
             ((NoteMenu) SceneContentChanger.getContent("noteMenu")).getNoteCreator().setCreateAction();
+            ((NoteMenu) SceneContentChanger.getContent("noteMenu")).getNoteCreator().clearFields();
             SceneContentChanger.changeContent("noteMenu");
         });
         super.getChildren().addAll(this.diary, this.modifyNote);
