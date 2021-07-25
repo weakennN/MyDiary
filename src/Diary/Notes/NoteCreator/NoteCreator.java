@@ -38,6 +38,7 @@ public class NoteCreator extends NoteCreatorDesigner {
         Month month = Month.findByName(super.getCTextField().getDatePicker().getValue().getMonth().toString());
         String title = super.getTTextField().getTextField().getText();
         String text = super.getNTextArea().getTextArea().getText();
+
         Note note = new Note(day, weekDay, year, month, title, text);
         Database.registerNote(note.getUniqueId(), this.diary.getUniqueId(), title, text, weekDay, day, month.toString(), year);
         this.initNoteDefaultActions(note);

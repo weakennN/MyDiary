@@ -2,7 +2,8 @@ package UI.CustomControls.NoteMenuControls;
 
 import javafx.geometry.Pos;
 import javafx.scene.control.DatePicker;
-import javafx.scene.layout.Region;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
 import java.time.LocalDate;
@@ -19,7 +20,9 @@ public class CTextField extends Region {
     private void initStyle() {
         this.datePicker = new DatePicker(LocalDate.now());
         this.datePicker.setMinSize(500, 35);
-        this.datePicker.getEditor().getStylesheets().add("UI/Style/CTextField.css");
+        // this.datePicker.getEditor().getStylesheets().add("UI/Style/CTextField.css");
+        this.datePicker.getEditor().setBackground(new Background(new BackgroundFill(Color.WHITE, new CornerRadii(10), null)));
+        this.datePicker.getEditor().setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, new CornerRadii(10), BorderWidths.DEFAULT, null)));
         this.datePicker.getStylesheets().add("UI/Style/CTextField.css");
         this.datePicker.getEditor().setFont(Font.font("Arial", 16));
         this.datePicker.getEditor().alignmentProperty().set(Pos.CENTER);

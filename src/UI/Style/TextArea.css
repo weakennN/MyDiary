@@ -3,6 +3,7 @@
     -fx-background-color: transparent, white, transparent, white;
     -fx-background-radius: 10px;
     -fx-border-radius: 10px;
+    -fx-border-color: black;
 }
 
 .text-area .content {

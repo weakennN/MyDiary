@@ -17,7 +17,8 @@ public class MyDiary {
 
     public void start() {
         Database.makeConnection();
-        this.loginSystem = new LoginSystem(this);
+        this.setDiary(new Diary("!"));
+        //this.loginSystem = new LoginSystem(this);
     }
 
     public void stop() {

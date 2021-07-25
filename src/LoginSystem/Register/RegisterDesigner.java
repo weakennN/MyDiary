@@ -1,13 +1,13 @@
 package LoginSystem.Register;
 
+import LoginSystem.Entry;
 import UI.CustomControls.DataField;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
-public class RegisterDesigner extends Pane {
+public class RegisterDesigner extends Entry {
 
     private DataField usernameField;
     private DataField emailField;
