@@ -27,6 +27,10 @@ public class LoginSystem {
         return this.register;
     }
 
+    public Login getLogin() {
+        return this.login;
+    }
+
     public void changeContent(Parent parent) {
         Designer.setSceneRoot(parent);
     }

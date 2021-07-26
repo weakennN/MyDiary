@@ -1,5 +1,7 @@
 package Database;
 
+import Common.HashGenerator;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -33,26 +35,23 @@ public class Database {
         PreparedStatement statement = null;
         try {
             String query = "INSERT INTO accounts VALUES (?, ?, ?, ?, ?)";
+            String hashedPassword = HashGenerator.generateHash(password);
             statement = connection.prepareStatement(query);
             statement.setString(1, id);
             statement.setString(2, username);
             statement.setString(3, email);
-            statement.setString(4, password);
+            statement.setString(4, hashedPassword);
             statement.setString(5, diaryId);
             statement.execute();
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            try {
-                statement.close();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            closeStatement(statement);
         }
     }
 
     public static void registerNote(String noteId, String diaryId, String title, String text, String weekDay, int monthDay, String month, int year) {
-        PreparedStatement statement;
+        PreparedStatement statement = null;
         try {
             String query = "INSERT INTO notes VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
             statement = connection.prepareStatement(query);
@@ -67,6 +66,8 @@ public class Database {
             statement.execute();
         } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+            closeStatement(statement);
         }
     }
 
@@ -85,11 +86,13 @@ public class Database {
             statement.execute();
         } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+            closeStatement(statement);
         }
     }
 
     public static boolean isUsernameAvailable(String username) {
-        PreparedStatement statement;
+        PreparedStatement statement = null;
         try {
             String query = "SELECT user_name FROM accounts WHERE user_name = ?";
             statement = connection.prepareStatement(query);
@@ -100,6 +103,8 @@ public class Database {
             }
         } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+            closeStatement(statement);
         }
 
         return true;
@@ -114,11 +119,13 @@ public class Database {
             statement.execute();
         } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+            closeStatement(statement);
         }
     }
 
     public static boolean isEmailAvailable(String email) {
-        PreparedStatement statement;
+        PreparedStatement statement = null;
         try {
             String query = "SELECT email FROM accounts WHERE email = ?";
             statement = connection.prepareStatement(query);
@@ -129,26 +136,31 @@ public class Database {
             }
         } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+            closeStatement(statement);
         }
 
         return true;
     }
 
     public static boolean isPasswordCorrect(String email, String password) {
-        PreparedStatement statement;
+        PreparedStatement statement = null;
         try {
             String query = "SELECT password FROM accounts WHERE email = ?";
+            String hashedPassword = HashGenerator.generateHash(password);
             statement = connection.prepareStatement(query);
             statement.setString(1, email);
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
-                if (!password.equals(resultSet.getString("password"))) {
+                if (!hashedPassword.equals(resultSet.getString("password"))) {
                     return false;
                 }
             }
 
         } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+            closeStatement(statement);
         }
 
         return true;
@@ -156,7 +168,7 @@ public class Database {
 
     public static Map<String, List<String>> getAllRegisteredNotes(String diaryId) {
         Map<String, List<String>> notes = new LinkedHashMap<>();
-        PreparedStatement statement;
+        PreparedStatement statement = null;
         try {
             String query = "SELECT * FROM notes WHERE diary_id = ?";
             statement = connection.prepareStatement(query);
@@ -174,13 +186,15 @@ public class Database {
             }
         } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+            closeStatement(statement);
         }
 
         return notes;
     }
 
     public static String getDiaryId(String email) {
-        PreparedStatement statement;
+        PreparedStatement statement = null;
         try {
             String query = "SELECT diary_id FROM accounts WHERE email = ?";
             statement = connection.prepareStatement(query);
@@ -191,8 +205,18 @@ public class Database {
             }
         } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+            closeStatement(statement);
         }
 
         return null;
+    }
+
+    public static void closeStatement(Statement statement) {
+        try {
+            statement.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

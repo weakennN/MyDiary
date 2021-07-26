@@ -1,5 +1,6 @@
 package LoginSystem.Loader;
 
+import Common.ActionInitializer;
 import Common.NoteClicked;
 import Common.SceneContentChanger;
 import Content.NoteMenu;
@@ -38,16 +39,7 @@ public class DiaryLoader extends Loader {
             String month = entry.getValue().get(4);
             int year = Integer.parseInt(entry.getValue().get(5));
             Note note = new Note(noteId, monthDay, weekDay, year, Month.findByName(month), title, text);
-            note.setOnMouseClicked(e -> {
-                if (e.getButton().equals(MouseButton.PRIMARY)) {
-                    ((NoteMenu) SceneContentChanger.getContent("noteMenu")).getNoteCreator().setFields(note);
-                    SceneContentChanger.changeContent("noteMenu");
-                    ((NoteMenu) SceneContentChanger.getContent("noteMenu")).getNoteCreator().setEditAction();
-                } else if (e.getButton().equals(MouseButton.SECONDARY)) {
-                    diary.getMenu("NoteContextMenu").show(Designer.stage, e.getScreenX(), e.getScreenY());
-                }
-                NoteClicked.note = note;
-            });
+            ActionInitializer.initNoteDefaultActions(note, diary);
             diary.addNote(note);
         }
 

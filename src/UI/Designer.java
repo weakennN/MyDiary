@@ -2,7 +2,6 @@ package UI;
 
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 public class Designer {
@@ -12,6 +11,7 @@ public class Designer {
 
     public static void init() {
         stage = new Stage();
+        stage.setResizable(false);
     }
 
     public static void changeScene() {

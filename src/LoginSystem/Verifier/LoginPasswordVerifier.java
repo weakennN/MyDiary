@@ -18,6 +18,7 @@ public class LoginPasswordVerifier<T> extends Verifier<T> {
         DataField emailField = (DataField) this.secondItem;
 
         if (!Database.isPasswordCorrect(emailField.getTextField().getText(), passwordField.getTextField().getText())) {
+            passwordField.displayErrorMessage(" - Invalid password");
             return false;
         }
 

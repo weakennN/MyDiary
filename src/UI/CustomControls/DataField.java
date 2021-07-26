@@ -6,6 +6,7 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
+import javafx.scene.text.FontWeight;
 
 public class DataField extends Region {
 
@@ -25,7 +26,7 @@ public class DataField extends Region {
         this.textField.setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, new CornerRadii(10), BorderWidths.DEFAULT)));
         this.textField.setBackground(new Background(new BackgroundFill(Color.WHITE, new CornerRadii(10), null)));
         this.label = new Label(labelName);
-        this.label.setFont(Font.font("Arial", FontPosture.REGULAR, 15));
+        this.label.setFont(Font.font("Arial", FontWeight.BLACK, FontPosture.REGULAR, 15));
         this.container = new VBox(5);
         this.container.getChildren().addAll(this.label, this.textField);
         super.getChildren().add(this.container);

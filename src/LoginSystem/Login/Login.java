@@ -30,6 +30,7 @@ public class Login extends LoginDesigner {
             super.getLoginSystem().changeContent(super.getLoginSystem().getRegister());
         });
         super.getLoginButton().setOnAction(e -> {
+            super.removeErrorMessages();
             boolean ableToLogin = true;
 
             for (Verifier verifier : super.getVerifiers()) {

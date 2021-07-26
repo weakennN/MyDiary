@@ -37,8 +37,8 @@ public class NoteControl extends Region {
         this.rectangle.setFill(Color.valueOf(month.getColor()));
 
         this.dateVbox = new VBox();
-        this.dateVbox.setMinSize(68, 50);
-        this.dateVbox.setMaxSize(68, 50);
+        this.dateVbox.setMinSize(85, 50);
+        this.dateVbox.setMaxSize(85, 50);
 
         List<Label> labels = List.of(this.weekDayLabel, this.monthDayLabel, this.yearLabel);
 
@@ -69,7 +69,7 @@ public class NoteControl extends Region {
             this.textVbox.getChildren().add(label);
         }
 
-        this.textVbox.setLayoutX(95);
+        this.textVbox.setLayoutX(115);
 
         this.titleLabel.setFont(Font.font("Trebuchet MS", FontWeight.SEMI_BOLD, 20));
 

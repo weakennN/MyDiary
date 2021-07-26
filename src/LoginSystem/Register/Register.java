@@ -25,9 +25,7 @@ public class Register extends RegisterDesigner {
         super.addVerifier(new RegisterEmailVerifier<>(super.getEmailField()));
 
         super.getRegisterButton().setOnAction(e -> {
-            super.getEmailField().removeErrorMessage();
-            super.getPasswordField().removeErrorMessage();
-            super.getUsernameField().removeErrorMessage();
+            super.removeErrorMessages();
 
             boolean ableToRegister = true;
             for (Verifier verifier : super.getVerifiers()) {
@@ -35,7 +33,7 @@ public class Register extends RegisterDesigner {
                     ableToRegister = false;
                 }
             }
-
+            // TODO remove error msgs when user go back to login or register scene and maybe clear the fields as well
             if (ableToRegister) {
                 String userId = UUID.randomUUID().toString();
                 String diaryId = UUID.randomUUID().toString();
@@ -45,6 +43,10 @@ public class Register extends RegisterDesigner {
                         diaryId);
                 super.getLoginSystem().getMyDiary().setDiary(user.getDiary());
             }
+        });
+
+        super.getGoBackToLoginButton().setOnAction(e -> {
+            super.getLoginSystem().changeContent(super.getLoginSystem().getLogin());
         });
     }
 }

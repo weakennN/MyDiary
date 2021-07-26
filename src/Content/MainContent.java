@@ -21,8 +21,8 @@ public class MainContent extends Region {
         this.modifyNote.setLayoutX(800);
         this.modifyNote.setLayoutY(550);
         this.modifyNote.setOnAction(e -> {
-            ((NoteMenu) SceneContentChanger.getContent("noteMenu")).getNoteCreator().setCreateAction();
             ((NoteMenu) SceneContentChanger.getContent("noteMenu")).getNoteCreator().clearFields();
+            ((NoteMenu) SceneContentChanger.getContent("noteMenu")).getNoteCreator().setCreateAction();
             SceneContentChanger.changeContent("noteMenu");
         });
         super.getChildren().addAll(this.diary, this.modifyNote);

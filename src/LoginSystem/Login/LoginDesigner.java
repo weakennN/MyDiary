@@ -45,4 +45,9 @@ public class LoginDesigner extends Entry {
     public Button getLoginButton() {
         return loginButton;
     }
+
+    public void removeErrorMessages() {
+        this.emailField.removeErrorMessage();
+        this.passwordField.removeErrorMessage();
+    }
 }

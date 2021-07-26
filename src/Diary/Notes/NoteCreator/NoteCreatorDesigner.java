@@ -9,8 +9,10 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 public abstract class NoteCreatorDesigner extends Region {
 
@@ -95,5 +97,20 @@ public abstract class NoteCreatorDesigner extends Region {
 
     public String getText() {
         return this.tTextField.getTextField().getText();
+    }
+
+    public Map<String, String> getNoteValues() {
+        Map<String, String> noteValues = new HashMap<>();
+
+        noteValues.put("day", this.cTextField.getDatePicker().getValue().getDayOfMonth() + "");
+        noteValues.put("weekDay", this.cTextField.getDatePicker().getValue().getDayOfWeek().toString().charAt(0)
+                + this.cTextField.getDatePicker().getValue().getDayOfWeek().toString().substring(1).toLowerCase(Locale.ROOT));
+        noteValues.put("year", this.cTextField.getDatePicker().getValue().getYear() + "");
+        noteValues.put("month", this.cTextField.getDatePicker().getValue().getMonth().toString());
+        noteValues.put("title", this.tTextField.getTextField().getText());
+        noteValues.put("text", this.nTextArea.getTextArea().getText());
+        //  Month month = Month.findByName(super.getCTextField().getDatePicker().getValue().getMonth().toString());
+
+        return noteValues;
     }
 }

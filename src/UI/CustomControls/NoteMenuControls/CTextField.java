@@ -20,7 +20,6 @@ public class CTextField extends Region {
     private void initStyle() {
         this.datePicker = new DatePicker(LocalDate.now());
         this.datePicker.setMinSize(500, 35);
-        // this.datePicker.getEditor().getStylesheets().add("UI/Style/CTextField.css");
         this.datePicker.getEditor().setBackground(new Background(new BackgroundFill(Color.WHITE, new CornerRadii(10), null)));
         this.datePicker.getEditor().setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, new CornerRadii(10), BorderWidths.DEFAULT, null)));
         this.datePicker.getStylesheets().add("UI/Style/CTextField.css");
@@ -52,9 +51,9 @@ public class CTextField extends Region {
     }
 
     private void setDate(LocalDate localDate) {
-        String dayOfWeek = localDate.getDayOfWeek().toString().charAt(0) + this.datePicker.getValue().getDayOfWeek().toString().substring(1).toLowerCase(Locale.ROOT);
+        String dayOfWeek = localDate.getDayOfWeek().toString().charAt(0) + localDate.getDayOfWeek().toString().substring(1).toLowerCase(Locale.ROOT);
         int dayOfMonth = localDate.getDayOfMonth();
-        String month = localDate.getMonth().toString().charAt(0) + this.datePicker.getValue().getMonth().toString().substring(1).toLowerCase(Locale.ROOT);
+        String month = localDate.getMonth().toString().charAt(0) + localDate.getMonth().toString().substring(1).toLowerCase(Locale.ROOT);
         int year = localDate.getYear();
         this.datePicker.getEditor().setText(dayOfWeek + ", " + dayOfMonth + " " + month + " " + year);
     }
