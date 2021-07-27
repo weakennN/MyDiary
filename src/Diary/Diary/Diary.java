@@ -7,11 +7,11 @@ import java.util.*;
 
 public class Diary extends DiaryDesigner {
 
-    private String id;
-    private Map<String, Note> notes;
+    private int id;
+    private Map<Integer, Note> notes;
     private Map<String, DiaryMenu> menus;
 
-    public Diary(String id) {
+    public Diary(int id) {
         this.id = id;
         this.notes = new LinkedHashMap<>();
         this.menus = new HashMap<>();
@@ -28,17 +28,17 @@ public class Diary extends DiaryDesigner {
         super.removeFromContainer(note);
     }
 
-    public Map<String, Note> getNotes() {
+    public Map<Integer, Note> getNotes() {
         return this.notes;
     }
 
-    public void test() {
+    public void resetNotes() {
         super.getNotesContainer().getChildren().clear();
         List<Note> test = new ArrayList<>(this.notes.values());
         super.getNotesContainer().getChildren().addAll(test);
     }
 
-    public Note getNote(String id) {
+    public Note getNote(int id) {
         return this.notes.get(id);
     }
 
@@ -51,7 +51,7 @@ public class Diary extends DiaryDesigner {
         return this.menus.get(key);
     }
 
-    public String getUniqueId() {
+    public int getUniqueId() {
         return this.id;
     }
 }

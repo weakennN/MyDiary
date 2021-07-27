@@ -12,9 +12,9 @@ import java.util.Map;
 
 public class DiaryLoader extends Loader {
 
-    private String diaryId;
+    private int diaryId;
 
-    public DiaryLoader(MyDiary myDiary, String diaryId) {
+    public DiaryLoader(MyDiary myDiary, int diaryId) {
         super(myDiary);
         this.diaryId = diaryId;
     }
@@ -22,18 +22,19 @@ public class DiaryLoader extends Loader {
     @Override
     public void load() {
         Diary diary = new Diary(this.diaryId);
-        int i = 0;
-        Map<String, List<String>> registeredNotes = DiaryManagement.getAllRegisteredNotes(this.diaryId);
 
-        for (Map.Entry<String, List<String>> entry : registeredNotes.entrySet()) {
-            String noteId = entry.getKey();
+        Map<Integer, List<String>> registeredNotes = DiaryManagement.getAllRegisteredNotes(this.diaryId);
+
+        for (Map.Entry<Integer, List<String>> entry : registeredNotes.entrySet()) {
+            int noteId = entry.getKey();
             String title = entry.getValue().get(0);
             String text = entry.getValue().get(1);
             String weekDay = entry.getValue().get(2);
             int monthDay = Integer.parseInt(entry.getValue().get(3));
             String month = entry.getValue().get(4);
             int year = Integer.parseInt(entry.getValue().get(5));
-            Note note = new Note(noteId, monthDay, weekDay, year, Month.findByName(month), title, text);
+            Note note = new Note(monthDay, weekDay, year, Month.findByName(month), title, text);
+            note.setId(noteId);
             ActionInitializer.initNoteDefaultActions(note, diary);
             diary.addNote(note);
         }

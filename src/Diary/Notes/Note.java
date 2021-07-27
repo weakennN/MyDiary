@@ -6,7 +6,7 @@ import java.util.UUID;
 
 public class Note extends NoteDesigner {
 
-    private String id;
+    private int id;
     private int monthDay;
     private String weekDay;
     private int year;
@@ -15,12 +15,7 @@ public class Note extends NoteDesigner {
     private String text;
 
     public Note(int monthDay, String weekDay, int year, Month month, String title, String text) {
-        this(UUID.randomUUID().toString(), monthDay, weekDay, year, month, title, text);
-    }
-
-    public Note(String id, int monthDay, String weekDay, int year, Month month, String title, String text) {
         super(monthDay, weekDay, year, month, title, text);
-        this.id = id;
         this.monthDay = monthDay;
         this.weekDay = weekDay;
         this.year = year;
@@ -79,7 +74,11 @@ public class Note extends NoteDesigner {
         super.setMonth(month, year);
     }
 
-    public String getUniqueId() {
+    public int getUniqueId() {
         return this.id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

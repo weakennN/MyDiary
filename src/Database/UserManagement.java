@@ -7,17 +7,15 @@ import java.sql.ResultSet;
 
 public class UserManagement {
 
-    public static void createUser(String id, String username, String email, String password, String diaryId) {
+    public static void createUser(String username, String email, String password) {
         PreparedStatement statement = null;
         try {
-            String query = "INSERT INTO accounts VALUES (?, ?, ?, ?, ?)";
+            String query = "INSERT INTO accounts(user_name,email,password) VALUES (?, ?, ?)";
             String hashedPassword = HashGenerator.generateHash(password);
             statement = Database.getConnection().prepareStatement(query);
-            statement.setString(1, id);
-            statement.setString(2, username);
-            statement.setString(3, email);
-            statement.setString(4, hashedPassword);
-            statement.setString(5, diaryId);
+            statement.setString(1, username);
+            statement.setString(2, email);
+            statement.setString(3, hashedPassword);
             statement.execute();
         } catch (Exception e) {
             e.printStackTrace();
@@ -81,9 +79,43 @@ public class UserManagement {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-           Database.closeStatement(statement);
+            Database.closeStatement(statement);
         }
 
         return true;
+    }
+
+    public static int getUserId(String email) {
+        PreparedStatement statement = null;
+        try {
+            String query = "SELECT id FROM accounts WHERE email = ?";
+            statement = Database.getConnection().prepareStatement(query);
+            statement.setString(1, email);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                return resultSet.getInt("id");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            Database.closeStatement(statement);
+        }
+
+        return 0;
+    }
+
+    public static void setDiaryId(int id) {
+        PreparedStatement statement = null;
+        try {
+            String query = "UPDATE accounts SET diary_id = ? WHERE id = ?";
+            statement = Database.getConnection().prepareStatement(query);
+            statement.setInt(1, id);
+            statement.setInt(2, id);
+            statement.execute();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            Database.closeStatement(statement);
+        }
     }
 }

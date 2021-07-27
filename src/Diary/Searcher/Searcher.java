@@ -31,7 +31,7 @@ public class Searcher extends SearcherDesigner {
     }
 
     private void search() {
-        List<String> ids = DiaryManagement.getNoteIds(super.getSearcherControl().getTextField().getText(), this.diary.getUniqueId());
+        List<Integer> ids = DiaryManagement.getNoteIds(super.getSearcherControl().getTextField().getText(), this.diary.getUniqueId());
         List<Note> notes = new ArrayList<>();
         for (int i = 0; i < ids.size(); i++) {
             notes.add(this.diary.getNote(ids.get(i)));
@@ -40,7 +40,7 @@ public class Searcher extends SearcherDesigner {
     }
 
     private void cancelSearch() {
-        this.diary.test();
+        this.diary.resetNotes();
     }
 
     private void searchAction() {

@@ -26,7 +26,7 @@ public class Login extends LoginDesigner {
         super.addVerifier(new LoginEmailVerifier<>(super.getEmailField()));
         super.addVerifier(new LoginPasswordVerifier<>(super.getPasswordField(), super.getEmailField()));
 
-        super.getCreateAccountButton().setOnAction(e -> {
+        super.getCreateAccountHyperLink().setOnAction(e -> {
             super.getLoginSystem().changeContent(super.getLoginSystem().getRegister());
         });
 
@@ -41,7 +41,7 @@ public class Login extends LoginDesigner {
             }
 
             if (ableToLogin) {
-                String diaryId = DiaryManagement.getDiaryId(super.getEmailField().getTextField().getText());
+                int diaryId = DiaryManagement.getDiaryId(super.getEmailField().getTextField().getText());
                 this.loaders.add(new DiaryLoader(super.getLoginSystem().getMyDiary(), diaryId));
                 for (Loader loader : this.loaders) {
                     loader.load();

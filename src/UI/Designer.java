@@ -2,6 +2,7 @@ package UI;
 
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 
 public class Designer {
@@ -23,7 +24,7 @@ public class Designer {
         changeScene();
     }
 
-    public static void initScene(Parent parent) {
+    public static void initScene(Region parent) {
         scene = new Scene(parent);
         stage.setScene(scene);
         stage.show();

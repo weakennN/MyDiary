@@ -9,19 +9,18 @@ import java.util.Map;
 
 public class DiaryManagement {
 
-    public static void registerNote(String noteId, String diaryId, String title, String text, String weekDay, int monthDay, String month, int year) {
+    public static void registerNote(int diaryId, String title, String text, String weekDay, int monthDay, String month, int year) {
         PreparedStatement statement = null;
         try {
-            String query = "INSERT INTO notes VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
+            String query = "INSERT INTO notes(diary_id,title,text,week_day,month_day,month,year) VALUES(?, ?, ?, ?, ?, ?, ?)";
             statement = Database.getConnection().prepareStatement(query);
-            statement.setString(1, noteId);
-            statement.setString(2, diaryId);
-            statement.setString(3, title);
-            statement.setString(4, text);
-            statement.setString(5, weekDay);
-            statement.setInt(6, monthDay);
-            statement.setString(7, month);
-            statement.setInt(8, year);
+            statement.setInt(1, diaryId);
+            statement.setString(2, title);
+            statement.setString(3, text);
+            statement.setString(4, weekDay);
+            statement.setInt(5, monthDay);
+            statement.setString(6, month);
+            statement.setInt(7, year);
             statement.execute();
         } catch (Exception e) {
             e.printStackTrace();
@@ -30,7 +29,7 @@ public class DiaryManagement {
         }
     }
 
-    public static void editNote(String noteId, String title, String text, String weekDay, int monthDay, String month, int year) {
+    public static void editNote(int noteId, String title, String text, String weekDay, int monthDay, String month, int year) {
         PreparedStatement statement = null;
         try {
             String query = "UPDATE notes SET title = ?, text = ?, week_day = ?, month_day = ? , month = ?, year = ? WHERE note_id = ?";
@@ -41,7 +40,7 @@ public class DiaryManagement {
             statement.setInt(4, monthDay);
             statement.setString(5, month);
             statement.setInt(6, year);
-            statement.setString(7, noteId);
+            statement.setInt(7, noteId);
             statement.execute();
         } catch (Exception e) {
             e.printStackTrace();
@@ -50,12 +49,12 @@ public class DiaryManagement {
         }
     }
 
-    public static void removeNote(String noteId) {
+    public static void removeNote(int noteId) {
         PreparedStatement statement = null;
         try {
             String query = "DELETE FROM notes WHERE note_id = ?";
             statement = Database.getConnection().prepareStatement(query);
-            statement.setString(1, noteId);
+            statement.setInt(1, noteId);
             statement.execute();
         } catch (Exception e) {
             e.printStackTrace();
@@ -64,13 +63,13 @@ public class DiaryManagement {
         }
     }
 
-    public static Map<String, List<String>> getAllRegisteredNotes(String diaryId) {
-        Map<String, List<String>> notes = new LinkedHashMap<>();
+    public static Map<Integer, List<String>> getAllRegisteredNotes(int diaryId) {
+        Map<Integer, List<String>> notes = new LinkedHashMap<>();
         PreparedStatement statement = null;
         try {
             String query = "SELECT * FROM notes WHERE diary_id = ?";
             statement = Database.getConnection().prepareStatement(query);
-            statement.setString(1, diaryId);
+            statement.setInt(1, diaryId);
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 List<String> noteFields = new ArrayList<>();
@@ -80,7 +79,7 @@ public class DiaryManagement {
                 noteFields.add(resultSet.getInt("month_day") + "");
                 noteFields.add(resultSet.getString("month"));
                 noteFields.add(resultSet.getInt("year") + "");
-                notes.put(resultSet.getString("note_id"), noteFields);
+                notes.put(resultSet.getInt("note_id"), noteFields);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -91,7 +90,7 @@ public class DiaryManagement {
         return notes;
     }
 
-    public static String getDiaryId(String email) {
+    public static int getDiaryId(String email) {
         PreparedStatement statement = null;
         try {
             String query = "SELECT diary_id FROM accounts WHERE email = ?";
@@ -99,7 +98,7 @@ public class DiaryManagement {
             statement.setString(1, email);
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
-                return resultSet.getString("diary_id");
+                return resultSet.getInt("diary_id");
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -107,11 +106,11 @@ public class DiaryManagement {
             Database.closeStatement(statement);
         }
 
-        return null;
+        return 0;
     }
 
-    public static List<String> getNoteIds(String criteria, String diaryId) {
-        List<String> ids = new ArrayList<>();
+    public static List<Integer> getNoteIds(String criteria, int diaryId) {
+        List<Integer> ids = new ArrayList<>();
         PreparedStatement statement = null;
 
         try {
@@ -125,10 +124,10 @@ public class DiaryManagement {
             statement.setString(4, criteria);
             statement.setString(5, criteria);
             statement.setString(6, criteria);
-            statement.setString(7, diaryId);
+            statement.setInt(7, diaryId);
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
-                ids.add(resultSet.getString("note_id"));
+                ids.add(resultSet.getInt("note_id"));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -137,5 +136,31 @@ public class DiaryManagement {
         }
 
         return ids;
+    }
+
+    public static int getNoteId(int diaryId, String title, String text, String weekDay, int monthDay, String month, int year) {
+        PreparedStatement statement = null;
+        try {
+            String query = "SELECT note_id FROM notes WHERE diary_id = ? AND title = ? AND text = ? AND week_day = ? AND month_day = ? AND month = ? AND year = ?";
+            statement = Database.getConnection().prepareStatement(query);
+            statement.setInt(1, diaryId);
+            statement.setString(2, title);
+            statement.setString(3, text);
+            statement.setString(4, weekDay);
+            statement.setInt(5, monthDay);
+            statement.setString(6, month);
+            statement.setInt(7, year);
+            // TODO: remove copy paste
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                return resultSet.getInt("note_id");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            Database.closeStatement(statement);
+        }
+
+        return 0;
     }
 }

@@ -40,7 +40,8 @@ public class NoteCreator extends NoteCreatorDesigner {
         String text = noteValues.get("text");
 
         Note note = new Note(day, weekDay, year, month, title, text);
-        DiaryManagement.registerNote(note.getUniqueId(), this.diary.getUniqueId(), title, text, weekDay, day, month.toString(), year);
+        DiaryManagement.registerNote(this.diary.getUniqueId(), title, text, weekDay, day, month.toString(), year);
+        note.setId(DiaryManagement.getNoteId(this.diary.getUniqueId(), title, text, weekDay, day, month.toString(), year));
         this.initNoteDefaultActions(note);
         this.diary.addNote(note);
     }

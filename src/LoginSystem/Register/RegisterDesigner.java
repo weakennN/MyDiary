@@ -2,6 +2,9 @@ package LoginSystem.Register;
 
 import LoginSystem.Entry;
 import UI.CustomControls.DataField;
+import UI.CustomControls.EButton;
+import UI.CustomControls.EHyperLink;
+import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -12,8 +15,8 @@ public class RegisterDesigner extends Entry {
     private DataField usernameField;
     private DataField emailField;
     private DataField passwordField;
-    private Button registerButton;
-    private Button goBackToLoginButton;
+    private EButton registerButton;
+    private EHyperLink goBackToLoginHyperLink;
 
     public RegisterDesigner() {
         this.init();
@@ -23,17 +26,17 @@ public class RegisterDesigner extends Entry {
         this.usernameField = new DataField(new TextField(), "Username");
         this.emailField = new DataField(new TextField(), "Email");
         this.passwordField = new DataField(new PasswordField(), "Password");
-        this.registerButton = new Button("Register");
-        this.goBackToLoginButton = new Button("Already have an account ?");
-
+        this.registerButton = new EButton("Register");
+        this.goBackToLoginHyperLink = new EHyperLink("Already have an account ?");
+        
         VBox vBox = new VBox(10);
-        vBox.getChildren().addAll(this.usernameField, this.emailField, this.passwordField, this.registerButton, this.goBackToLoginButton);
-
+        vBox.getChildren().addAll(this.usernameField, this.emailField, this.passwordField, this.registerButton, this.goBackToLoginHyperLink);
         vBox.setLayoutX(200);
         vBox.setLayoutY(142.5);
-        super.getChildren().add(vBox);
 
         super.setMinSize(700, 550);
+
+        super.getChildren().add(vBox);
     }
 
     public void removeErrorMessages() {
@@ -58,7 +61,7 @@ public class RegisterDesigner extends Entry {
         return this.registerButton;
     }
 
-    public Button getGoBackToLoginButton() {
-        return this.goBackToLoginButton;
+    public EHyperLink getGoBackToLoginHyperLink() {
+        return this.goBackToLoginHyperLink;
     }
 }

@@ -9,8 +9,6 @@ import LoginSystem.Verifier.UsernameVerifier;
 import LoginSystem.Verifier.Verifier;
 import User.User;
 
-import java.util.UUID;
-
 public class Register extends RegisterDesigner {
 
     public Register(LoginSystem loginSystem) {
@@ -35,17 +33,18 @@ public class Register extends RegisterDesigner {
             }
 
             if (ableToRegister) {
-                String userId = UUID.randomUUID().toString();
-                String diaryId = UUID.randomUUID().toString();
-                User user = new User(UUID.randomUUID().toString(), super.getUsernameField().getTextField().getText(), new Diary(diaryId));
-                UserManagement.createUser(userId, super.getUsernameField().getTextField().getText(),
-                        super.getEmailField().getTextField().getText(), super.getPasswordField().getTextField().getText(),
-                        diaryId);
+                // TODO first register without diary id and then set the diary id user_id = diary_id
+                // TODO: getter for diary_id, note_id
+                UserManagement.createUser(super.getUsernameField().getTextField().getText(),
+                        super.getEmailField().getTextField().getText(), super.getPasswordField().getTextField().getText());
+                int id = UserManagement.getUserId(super.getEmailField().getTextField().getText());
+                User user = new User(id, super.getUsernameField().getTextField().getText(), new Diary(id));
+                UserManagement.setDiaryId(id);
                 super.getLoginSystem().getMyDiary().setDiary(user.getDiary());
             }
         });
 
-        super.getGoBackToLoginButton().setOnAction(e -> {
+        super.getGoBackToLoginHyperLink().setOnAction(e -> {
             super.getLoginSystem().changeContent(super.getLoginSystem().getLogin());
         });
     }
