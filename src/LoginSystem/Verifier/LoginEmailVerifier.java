@@ -1,6 +1,6 @@
 package LoginSystem.Verifier;
 
-import Database.Database;
+import Database.UserManagement;
 import UI.CustomControls.DataField;
 
 public class LoginEmailVerifier<T> extends Verifier<T> {
@@ -13,7 +13,7 @@ public class LoginEmailVerifier<T> extends Verifier<T> {
     public boolean verify() {
         DataField dataField = (DataField) super.getItem();
 
-        if (Database.isEmailAvailable(dataField.getTextField().getText())) {
+        if (UserManagement.isEmailAvailable(dataField.getTextField().getText())) {
             dataField.displayErrorMessage(" - Invalid email");
             return false;
         }

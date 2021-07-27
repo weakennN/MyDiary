@@ -1,6 +1,6 @@
 package LoginSystem.Register;
 
-import Database.Database;
+import Database.*;
 import Diary.Diary.Diary;
 import LoginSystem.LoginSystem;
 import LoginSystem.Verifier.RegisterEmailVerifier;
@@ -33,12 +33,12 @@ public class Register extends RegisterDesigner {
                     ableToRegister = false;
                 }
             }
-            // TODO remove error msgs when user go back to login or register scene and maybe clear the fields as well
+
             if (ableToRegister) {
                 String userId = UUID.randomUUID().toString();
                 String diaryId = UUID.randomUUID().toString();
                 User user = new User(UUID.randomUUID().toString(), super.getUsernameField().getTextField().getText(), new Diary(diaryId));
-                Database.createUser(userId, super.getUsernameField().getTextField().getText(),
+                UserManagement.createUser(userId, super.getUsernameField().getTextField().getText(),
                         super.getEmailField().getTextField().getText(), super.getPasswordField().getTextField().getText(),
                         diaryId);
                 super.getLoginSystem().getMyDiary().setDiary(user.getDiary());

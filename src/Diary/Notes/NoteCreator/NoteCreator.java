@@ -3,7 +3,7 @@ package Diary.Notes.NoteCreator;
 import Common.ActionInitializer;
 import Common.NoteClicked;
 import Common.SceneContentChanger;
-import Database.Database;
+import Database.*;
 import Diary.Diary.Diary;
 import Diary.Notes.Note;
 import UI.CustomControls.NoteControl.Month;
@@ -40,7 +40,7 @@ public class NoteCreator extends NoteCreatorDesigner {
         String text = noteValues.get("text");
 
         Note note = new Note(day, weekDay, year, month, title, text);
-        Database.registerNote(note.getUniqueId(), this.diary.getUniqueId(), title, text, weekDay, day, month.toString(), year);
+        DiaryManagement.registerNote(note.getUniqueId(), this.diary.getUniqueId(), title, text, weekDay, day, month.toString(), year);
         this.initNoteDefaultActions(note);
         this.diary.addNote(note);
     }
@@ -68,7 +68,7 @@ public class NoteCreator extends NoteCreatorDesigner {
             note.setMonth(month, year);
             note.setTitle(title);
             note.setText(text);
-            Database.editNote(note.getUniqueId(), title, text, weekDay, day, month.toString(), year);
+            DiaryManagement.editNote(note.getUniqueId(), title, text, weekDay, day, month.toString(), year);
             SceneContentChanger.changeContent("mainContent");
         });
     }

@@ -1,16 +1,11 @@
 package LoginSystem.Loader;
 
 import Common.ActionInitializer;
-import Common.NoteClicked;
-import Common.SceneContentChanger;
-import Content.NoteMenu;
 import Core.MyDiary;
-import Database.Database;
+import Database.*;
 import Diary.Diary.Diary;
 import Diary.Notes.Note;
 import UI.CustomControls.NoteControl.Month;
-import UI.Designer;
-import javafx.scene.input.MouseButton;
 
 import java.util.List;
 import java.util.Map;
@@ -27,8 +22,8 @@ public class DiaryLoader extends Loader {
     @Override
     public void load() {
         Diary diary = new Diary(this.diaryId);
-
-        Map<String, List<String>> registeredNotes = Database.getAllRegisteredNotes(this.diaryId);
+        int i = 0;
+        Map<String, List<String>> registeredNotes = DiaryManagement.getAllRegisteredNotes(this.diaryId);
 
         for (Map.Entry<String, List<String>> entry : registeredNotes.entrySet()) {
             String noteId = entry.getKey();

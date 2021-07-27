@@ -1,5 +1,6 @@
 package LoginSystem.Verifier;
 
+import Database.UserManagement;
 import UI.CustomControls.DataField;
 
 import java.util.regex.Matcher;
@@ -18,8 +19,11 @@ public class RegisterEmailVerifier<T> extends Verifier<T> {
         if (!isValid(dataField.getTextField().getText())) {
             dataField.displayErrorMessage(" - Invalid email");
             return false;
+        } else if (!UserManagement.isEmailAvailable(dataField.getTextField().getText())) {
+            dataField.displayErrorMessage(" - Already taken");
+            return false;
         }
-        // TODO: check if this email already exists
+
         return true;
     }
 

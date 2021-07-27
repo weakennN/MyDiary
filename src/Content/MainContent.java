@@ -2,16 +2,20 @@ package Content;
 
 import Common.SceneContentChanger;
 import Diary.Diary.Diary;
+import Diary.Searcher.Searcher;
 import UI.CustomControls.NoteMenuControls.NoteMenuButton;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 
 public class MainContent extends Region {
 
     private Diary diary;
     private NoteMenuButton modifyNote;
+    private Searcher searcher;
 
     public MainContent(Diary diary) {
         this.diary = diary;
+        this.searcher = new Searcher(this.diary);
         this.init();
     }
 
@@ -25,6 +29,8 @@ public class MainContent extends Region {
             ((NoteMenu) SceneContentChanger.getContent("noteMenu")).getNoteCreator().setCreateAction();
             SceneContentChanger.changeContent("noteMenu");
         });
-        super.getChildren().addAll(this.diary, this.modifyNote);
+        VBox vBox = new VBox(5);
+        vBox.getChildren().addAll(this.searcher, this.diary);
+        super.getChildren().addAll(vBox, this.modifyNote);
     }
 }

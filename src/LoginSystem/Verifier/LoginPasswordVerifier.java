@@ -1,6 +1,6 @@
 package LoginSystem.Verifier;
 
-import Database.Database;
+import Database.UserManagement;
 import UI.CustomControls.DataField;
 
 public class LoginPasswordVerifier<T> extends Verifier<T> {
@@ -17,7 +17,7 @@ public class LoginPasswordVerifier<T> extends Verifier<T> {
         DataField passwordField = (DataField) super.getItem();
         DataField emailField = (DataField) this.secondItem;
 
-        if (!Database.isPasswordCorrect(emailField.getTextField().getText(), passwordField.getTextField().getText())) {
+        if (!UserManagement.isPasswordCorrect(emailField.getTextField().getText(), passwordField.getTextField().getText())) {
             passwordField.displayErrorMessage(" - Invalid password");
             return false;
         }

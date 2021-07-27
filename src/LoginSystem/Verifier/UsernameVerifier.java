@@ -1,7 +1,6 @@
 package LoginSystem.Verifier;
 
-
-import Database.Database;
+import Database.*;
 import UI.CustomControls.DataField;
 
 public class UsernameVerifier<T> extends Verifier<T> {
@@ -32,6 +31,6 @@ public class UsernameVerifier<T> extends Verifier<T> {
     }
 
     private boolean isUsernameAvailable(String username) {
-        return Database.isUsernameAvailable(username);
+        return UserManagement.isUsernameAvailable(username);
     }
 }

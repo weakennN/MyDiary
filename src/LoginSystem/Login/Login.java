@@ -1,6 +1,6 @@
 package LoginSystem.Login;
 
-import Database.Database;
+import Database.*;
 import LoginSystem.Loader.DiaryLoader;
 import LoginSystem.Loader.Loader;
 import LoginSystem.LoginSystem;
@@ -29,6 +29,7 @@ public class Login extends LoginDesigner {
         super.getCreateAccountButton().setOnAction(e -> {
             super.getLoginSystem().changeContent(super.getLoginSystem().getRegister());
         });
+
         super.getLoginButton().setOnAction(e -> {
             super.removeErrorMessages();
             boolean ableToLogin = true;
@@ -40,7 +41,7 @@ public class Login extends LoginDesigner {
             }
 
             if (ableToLogin) {
-                String diaryId = Database.getDiaryId(super.getEmailField().getTextField().getText());
+                String diaryId = DiaryManagement.getDiaryId(super.getEmailField().getTextField().getText());
                 this.loaders.add(new DiaryLoader(super.getLoginSystem().getMyDiary(), diaryId));
                 for (Loader loader : this.loaders) {
                     loader.load();

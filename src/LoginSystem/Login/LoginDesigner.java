@@ -26,6 +26,7 @@ public class LoginDesigner extends Entry {
 
         VBox container = new VBox(10);
         container.getChildren().addAll(this.emailField, this.passwordField, this.createAccountButton, this.loginButton);
+        container.setLayoutX(200);
         super.getChildren().add(container);
         super.setMinSize(700, 550);
     }

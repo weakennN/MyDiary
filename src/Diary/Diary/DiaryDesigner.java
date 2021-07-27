@@ -2,7 +2,8 @@ package Diary.Diary;
 
 import Diary.Notes.Note;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 
 public class DiaryDesigner extends ScrollPane {
 
@@ -17,6 +18,9 @@ public class DiaryDesigner extends ScrollPane {
         this.notesContainer.setMaxWidth(900);
         super.setContent(this.notesContainer);
         super.setHbarPolicy(ScrollBarPolicy.NEVER);
+        super.setBackground(new Background(new BackgroundFill(Color.valueOf("fafaff"), null, null)));
+        super.setStyle("-fx-background: #fafaff");
+        super.getStyleClass().add("edge-to-edge");
     }
 
     public void addToContainer(Note note) {
@@ -25,6 +29,10 @@ public class DiaryDesigner extends ScrollPane {
 
     public void removeFromContainer(Note note) {
         this.notesContainer.getChildren().remove(note);
+    }
+
+    protected VBox getNotesContainer() {
+        return this.notesContainer;
     }
 
     @Override
