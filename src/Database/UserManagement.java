@@ -103,19 +103,4 @@ public class UserManagement {
 
         return 0;
     }
-
-    public static void setDiaryId(int id) {
-        PreparedStatement statement = null;
-        try {
-            String query = "UPDATE accounts SET diary_id = ? WHERE id = ?";
-            statement = Database.getConnection().prepareStatement(query);
-            statement.setInt(1, id);
-            statement.setInt(2, id);
-            statement.execute();
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            Database.closeStatement(statement);
-        }
-    }
 }

@@ -39,7 +39,6 @@ public class Register extends RegisterDesigner {
                         super.getEmailField().getTextField().getText(), super.getPasswordField().getTextField().getText());
                 int id = UserManagement.getUserId(super.getEmailField().getTextField().getText());
                 User user = new User(id, super.getUsernameField().getTextField().getText(), new Diary(id));
-                UserManagement.setDiaryId(id);
                 super.getLoginSystem().getMyDiary().setDiary(user.getDiary());
             }
         });

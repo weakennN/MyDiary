@@ -13,14 +13,7 @@ public class DiaryManagement {
         PreparedStatement statement = null;
         try {
             String query = "INSERT INTO notes(diary_id,title,text,week_day,month_day,month,year) VALUES(?, ?, ?, ?, ?, ?, ?)";
-            statement = Database.getConnection().prepareStatement(query);
-            statement.setInt(1, diaryId);
-            statement.setString(2, title);
-            statement.setString(3, text);
-            statement.setString(4, weekDay);
-            statement.setInt(5, monthDay);
-            statement.setString(6, month);
-            statement.setInt(7, year);
+            statement = getNoteStatement(query, diaryId, title, text, weekDay, monthDay, month, year);
             statement.execute();
         } catch (Exception e) {
             e.printStackTrace();
@@ -142,15 +135,7 @@ public class DiaryManagement {
         PreparedStatement statement = null;
         try {
             String query = "SELECT note_id FROM notes WHERE diary_id = ? AND title = ? AND text = ? AND week_day = ? AND month_day = ? AND month = ? AND year = ?";
-            statement = Database.getConnection().prepareStatement(query);
-            statement.setInt(1, diaryId);
-            statement.setString(2, title);
-            statement.setString(3, text);
-            statement.setString(4, weekDay);
-            statement.setInt(5, monthDay);
-            statement.setString(6, month);
-            statement.setInt(7, year);
-            // TODO: remove copy paste
+            statement = getNoteStatement(query, diaryId, title, text, weekDay, monthDay, month, year);
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
                 return resultSet.getInt("note_id");
@@ -162,5 +147,24 @@ public class DiaryManagement {
         }
 
         return 0;
+    }
+
+    private static PreparedStatement getNoteStatement(String query, int diaryId, String title, String text, String weekDay, int monthDay, String month, int year) {
+        PreparedStatement statement;
+        try {
+            statement = Database.getConnection().prepareStatement(query);
+            statement.setInt(1, diaryId);
+            statement.setString(2, title);
+            statement.setString(3, text);
+            statement.setString(4, weekDay);
+            statement.setInt(5, monthDay);
+            statement.setString(6, month);
+            statement.setInt(7, year);
+            return statement;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return null;
     }
 }

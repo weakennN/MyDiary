@@ -807,10 +807,11 @@ false Zulu
 13158||-9223372036854775808|U|G
 13158||10|U|G</Grants>
       <Owner>postgres</Owner>
-      <IntrospectionStateNumber>843</IntrospectionStateNumber>
+      <IntrospectionStateNumber>912</IntrospectionStateNumber>
       <Current>1</Current>
       <Relations>sequence|table|24613|24615|1
-sequence|table|24635|24637|1
+sequence|table|24646|24650|1
+sequence|table|24648|24650|5
 </Relations>
     </database>
     <role id="3" parent="1" name="pg_execute_server_program">
@@ -2405,7 +2406,7 @@ sequence|table|24635|24637|1
       <Comment>standard public schema</Comment>
       <StateNumber>287</StateNumber>
       <Owner>postgres</Owner>
-      <IntrospectionStateNumber>844</IntrospectionStateNumber>
+      <IntrospectionStateNumber>913</IntrospectionStateNumber>
       <Current>1</Current>
     </schema>
     <extension id="17" parent="2" name="plpgsql">
@@ -2505,66 +2506,74 @@ sequence|table|24635|24637|1
       <HandlerId>335</HandlerId>
       <Type>index</Type>
     </access-method>
-    <sequence id="29" parent="16" name="accounts_id_seq">
-      <ObjectId>24635</ObjectId>
+    <sequence id="29" parent="16" name="accounts_diary_id_seq">
+      <ObjectId>24648</ObjectId>
       <Owner>postgres</Owner>
-      <StateNumber>842</StateNumber>
+      <StateNumber>886</StateNumber>
       <DataType>integer|0s</DataType>
     </sequence>
-    <sequence id="30" parent="16" name="notes_note_id_seq">
+    <sequence id="30" parent="16" name="accounts_id_seq">
+      <ObjectId>24646</ObjectId>
+      <Owner>postgres</Owner>
+      <StateNumber>886</StateNumber>
+      <DataType>integer|0s</DataType>
+    </sequence>
+    <sequence id="31" parent="16" name="notes_note_id_seq">
       <ObjectId>24613</ObjectId>
       <Owner>postgres</Owner>
       <StateNumber>819</StateNumber>
       <DataType>integer|0s</DataType>
     </sequence>
-    <table id="31" parent="16" name="accounts">
-      <ObjectId>24637</ObjectId>
+    <table id="32" parent="16" name="accounts">
+      <ObjectId>24650</ObjectId>
       <Owner>postgres</Owner>
-      <StateNumber>842</StateNumber>
+      <StateNumber>886</StateNumber>
     </table>
-    <table id="32" parent="16" name="notes">
+    <table id="33" parent="16" name="notes">
       <ObjectId>24615</ObjectId>
       <Owner>postgres</Owner>
       <StateNumber>819</StateNumber>
     </table>
-    <column id="33" parent="31" name="id">
+    <column id="34" parent="32" name="id">
       <Position>1</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>842</StateNumber>
+      <StateNumber>886</StateNumber>
       <DefaultExpression>nextval(&apos;accounts_id_seq&apos;::regclass)</DefaultExpression>
       <TypeId>23</TypeId>
     </column>
-    <column id="34" parent="31" name="user_name">
+    <column id="35" parent="32" name="user_name">
       <Position>2</Position>
       <DataType>varchar|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>842</StateNumber>
+      <StateNumber>886</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="35" parent="31" name="email">
+    <column id="36" parent="32" name="email">
       <Position>3</Position>
       <DataType>varchar|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>842</StateNumber>
+      <StateNumber>886</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="36" parent="31" name="password">
+    <column id="37" parent="32" name="password">
       <Position>4</Position>
       <DataType>varchar|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>842</StateNumber>
+      <StateNumber>886</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="37" parent="31" name="diary_id">
+    <column id="38" parent="32" name="diary_id">
       <Position>5</Position>
       <DataType>integer|0s</DataType>
-      <StateNumber>842</StateNumber>
+      <NotNull>1</NotNull>
+      <StateNumber>886</StateNumber>
+      <DefaultExpression>nextval(&apos;accounts_diary_id_seq&apos;::regclass)</DefaultExpression>
       <TypeId>23</TypeId>
     </column>
-    <index id="38" parent="31" name="accounts_pkey">
-      <ObjectId>24644</ObjectId>
-      <StateNumber>842</StateNumber>
+    <index id="39" parent="32" name="accounts_pkey">
+      <ObjectId>24658</ObjectId>
+      <StateNumber>886</StateNumber>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
       <Primary>1</Primary>
@@ -2572,14 +2581,14 @@ sequence|table|24635|24637|1
       <CollationIds>0</CollationIds>
       <ClassIds>1978</ClassIds>
     </index>
-    <key id="39" parent="31" name="accounts_pkey">
-      <ObjectId>24645</ObjectId>
-      <StateNumber>842</StateNumber>
+    <key id="40" parent="32" name="accounts_pkey">
+      <ObjectId>24659</ObjectId>
+      <StateNumber>886</StateNumber>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
       <UnderlyingIndexName>accounts_pkey</UnderlyingIndexName>
     </key>
-    <column id="40" parent="32" name="note_id">
+    <column id="41" parent="33" name="note_id">
       <Position>1</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
@@ -2587,56 +2596,56 @@ sequence|table|24635|24637|1
       <DefaultExpression>nextval(&apos;notes_note_id_seq&apos;::regclass)</DefaultExpression>
       <TypeId>23</TypeId>
     </column>
-    <column id="41" parent="32" name="diary_id">
+    <column id="42" parent="33" name="diary_id">
       <Position>2</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
       <StateNumber>819</StateNumber>
       <TypeId>23</TypeId>
     </column>
-    <column id="42" parent="32" name="title">
+    <column id="43" parent="33" name="title">
       <Position>3</Position>
       <DataType>varchar|0s</DataType>
       <NotNull>1</NotNull>
       <StateNumber>819</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="43" parent="32" name="text">
+    <column id="44" parent="33" name="text">
       <Position>4</Position>
       <DataType>varchar|0s</DataType>
       <NotNull>1</NotNull>
       <StateNumber>819</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="44" parent="32" name="week_day">
+    <column id="45" parent="33" name="week_day">
       <Position>5</Position>
       <DataType>varchar|0s</DataType>
       <NotNull>1</NotNull>
       <StateNumber>819</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="45" parent="32" name="month_day">
+    <column id="46" parent="33" name="month_day">
       <Position>6</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
       <StateNumber>819</StateNumber>
       <TypeId>23</TypeId>
     </column>
-    <column id="46" parent="32" name="month">
+    <column id="47" parent="33" name="month">
       <Position>7</Position>
       <DataType>varchar|0s</DataType>
       <NotNull>1</NotNull>
       <StateNumber>819</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="47" parent="32" name="year">
+    <column id="48" parent="33" name="year">
       <Position>8</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
       <StateNumber>819</StateNumber>
       <TypeId>23</TypeId>
     </column>
-    <index id="48" parent="32" name="notes_pkey">
+    <index id="49" parent="33" name="notes_pkey">
       <ObjectId>24622</ObjectId>
       <StateNumber>819</StateNumber>
       <ColNames>note_id</ColNames>
@@ -2646,7 +2655,7 @@ sequence|table|24635|24637|1
       <CollationIds>0</CollationIds>
       <ClassIds>1978</ClassIds>
     </index>
-    <key id="49" parent="32" name="notes_pkey">
+    <key id="50" parent="33" name="notes_pkey">
       <ObjectId>24623</ObjectId>
       <StateNumber>819</StateNumber>
       <ColNames>note_id</ColNames>

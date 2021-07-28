@@ -1,6 +1,7 @@
 package Diary.Notes.NoteCreator;
 
 import Diary.Notes.Note;
+import UI.CustomControls.EButton;
 import UI.CustomControls.NoteMenuControls.CTextField;
 import UI.CustomControls.NoteMenuControls.NTextArea;
 import UI.CustomControls.NoteMenuControls.NoteMenuButton;
@@ -19,8 +20,8 @@ public abstract class NoteCreatorDesigner extends Region {
     private CTextField cTextField;
     private TTextField tTextField;
     private NTextArea nTextArea;
-    private NoteMenuButton saveButton;
-    private NoteMenuButton goBackButton;
+    private EButton saveButton;
+    private EButton goBackButton;
     private VBox container;
 
     public NoteCreatorDesigner() {
@@ -32,27 +33,28 @@ public abstract class NoteCreatorDesigner extends Region {
         this.tTextField = new TTextField();
         this.nTextArea = new NTextArea();
         this.container = new VBox(20);
-        this.saveButton = new NoteMenuButton();
+        this.saveButton = new EButton();
         this.saveButton.setText("Save");
-        this.goBackButton = new NoteMenuButton();
+        this.goBackButton = new EButton();
         this.goBackButton.setText("Go back");
         HBox buttonHBox = new HBox(10);
-        List<NoteMenuButton> buttons = List.of(this.saveButton, this.goBackButton);
-        for (NoteMenuButton button : buttons) {
+        List<EButton> buttons = List.of(this.saveButton, this.goBackButton);
+        for (EButton button : buttons) {
+            button.setMinSize(90, 45);
             buttonHBox.getChildren().add(button);
         }
-        buttonHBox.setLayoutX(450);
-        buttonHBox.setLayoutY(550);
+        buttonHBox.setLayoutX(355);
+        buttonHBox.setLayoutY(530);
         this.container.getChildren().addAll(this.cTextField, this.tTextField, this.nTextArea);
         this.container.setLayoutX(45);
         super.getChildren().addAll(this.container, buttonHBox);
     }
 
-    public NoteMenuButton getSaveButton() {
+    public EButton getSaveButton() {
         return this.saveButton;
     }
 
-    public NoteMenuButton getGoBackButton() {
+    public EButton getGoBackButton() {
         return this.goBackButton;
     }
 

@@ -3,6 +3,7 @@ package Content;
 import Common.SceneContentChanger;
 import Diary.Diary.Diary;
 import Diary.Searcher.Searcher;
+import UI.CustomControls.EButton;
 import UI.CustomControls.NoteMenuControls.NoteMenuButton;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
@@ -10,7 +11,7 @@ import javafx.scene.layout.VBox;
 public class MainContent extends Region {
 
     private Diary diary;
-    private NoteMenuButton modifyNote;
+    private EButton modifyNote;
     private Searcher searcher;
 
     public MainContent(Diary diary) {
@@ -20,10 +21,11 @@ public class MainContent extends Region {
     }
 
     private void init() {
-        this.modifyNote = new NoteMenuButton();
+        this.modifyNote = new EButton("Create Note");
+        this.modifyNote.setMinSize(80,45);
         SceneContentChanger.addContent("noteMenu", new NoteMenu(this.diary));
-        this.modifyNote.setLayoutX(800);
-        this.modifyNote.setLayoutY(550);
+        this.modifyNote.setLayoutX(770);
+        this.modifyNote.setLayoutY(575);
         this.modifyNote.setOnAction(e -> {
             ((NoteMenu) SceneContentChanger.getContent("noteMenu")).getNoteCreator().clearFields();
             ((NoteMenu) SceneContentChanger.getContent("noteMenu")).getNoteCreator().setCreateAction();
